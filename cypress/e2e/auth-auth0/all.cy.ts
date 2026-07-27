@@ -36,9 +36,9 @@ describe("auth-auth0", () => {
       cy.location("pathname").should("eq", "/posts");
       cy.visit("/test-route");
       cy.get(".ant-result-404").should("exist");
+      window.localStorage.clear();
+      window.sessionStorage.clear();
       cy.clearAllCookies();
-      cy.clearAllSessionStorage();
-      cy.clearAllLocalStorage();
       cy.reload().then(() => {
         cy.location("pathname").should("eq", "/login");
         cy.location("search").should("contains", "?to=%2Ftest-route");
